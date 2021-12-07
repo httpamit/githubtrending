@@ -2,8 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { GoRepo } from "react-icons/go";
 import { AiOutlineFire, AiOutlineHeart } from "react-icons/ai";
-import { isEmptyObject } from "../shared/util";
-import { isNull, isUndefined } from "../shared/util";
+import { isEmptyObject, isUndefined } from "../shared/util";
 
 export default function Developer({ data }) {
   return (
