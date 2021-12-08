@@ -6,7 +6,7 @@ import axios from "axios";
 
 export default function ReposList() {
   async function fetchRepos() {
-    const { data } = await axios.get("http://localhost:3000/repositories");
+    const { data } = await axios.get("/repositories");
     return data;
   }
 
