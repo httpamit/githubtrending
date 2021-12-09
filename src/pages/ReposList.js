@@ -10,7 +10,7 @@ export default function ReposList() {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const fetchData = await fetch(`http://localhost:3000/repositories`, {
+        const fetchData = await fetch(`/repositories`, {
           method: "GET",
           headers: {
             Accept: "application/json",
