@@ -2,14 +2,11 @@ import React from "react";
 import { useQuery } from "react-query";
 import Developer from "../components/developer";
 import Loading from "../components/loading";
-import axios from "axios";
-export default function DevsList() {
-  async function fetchDeves() {
-    const { data } = await axios.get("/developers");
-    return data;
-  }
 
-  const { isLoading, error, data } = useQuery("repoData", fetchDeves);
+export default function DevsList() {
+  const { isLoading, error, data } = useQuery("repoData", () =>
+    fetch("/developers").then((res) => res.json())
+  );
 
   if (isLoading) return <Loading />;
 
