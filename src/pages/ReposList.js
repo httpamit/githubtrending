@@ -10,8 +10,13 @@ export default function ReposList() {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const response = await fetch("https://gh-trending-api.herokuapp.com/repositories", { mode: "no-cors" });
-        const data = await response.json();
+        const fetchData = await fetch(`http://localhost:3000/repositories`, {
+          method: "GET",
+          headers: {
+            Accept: "application/json",
+          },
+        });
+        const data = await fetchData.json();
         setLoading(false);
         setData(data);
       } catch (error) {
