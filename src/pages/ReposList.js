@@ -2,15 +2,11 @@ import React from "react";
 import { useQuery } from "react-query";
 import Repository from "../components/repository";
 import Loading from "../components/loading";
-import axios from "axios";
 
 export default function ReposList() {
-  async function fetchRepos() {
-    const { data } = await axios.get("/repositories");
-    return data;
-  }
-
-  const { isLoading, error, data } = useQuery("repoData", fetchRepos);
+  const { isLoading, error, data } = useQuery("repoData", () =>
+    fetch("/repositories").then((res) => res.json())
+  );
 
   if (isLoading) return <Loading />;
 
