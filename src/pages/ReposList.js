@@ -10,7 +10,7 @@ export default function ReposList() {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const response = await fetch("https://gh-trending-api.herokuapp.com/repositories");
+        const response = await fetch("https://gh-trending-api.herokuapp.com/repositories", { mode: "no-cors" });
         const data = await response.json();
         setLoading(false);
         setData(data);
