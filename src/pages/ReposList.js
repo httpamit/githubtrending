@@ -1,16 +1,28 @@
-import React from "react";
-import { useQuery } from "react-query";
+import React, { useState, useEffect } from "react";
 import Repository from "../components/repository";
 import Loading from "../components/loading";
 
 export default function ReposList() {
-  const { isLoading, error, data } = useQuery("repoData", () =>
-    fetch("/repositories").then((res) => res.json())
-  );
+  const [isLoading, setLoading] = useState(false);
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      try {
+        const response = await fetch("/repositories");
+        const data = await response.json();
+        setLoading(false);
+        setData(data);
+      } catch (error) {
+        console.log("error", error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   if (isLoading) return <Loading />;
-
-  if (error) return "An error has occurred: " + error.message;
 
   return (
     <ul className="list-group list-group-flush">
